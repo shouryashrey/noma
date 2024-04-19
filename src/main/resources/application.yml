@@ -4,3 +4,17 @@ server:
 spring:
   application:
     name: noma
+  kafka:
+    bootstrap-servers: 192.168.29.174:9092
+    consumer:
+      group-id: noma
+      auto-offset-reset: earliest
+
+statusMessage:
+  OK: "Notification pushed to queue"
+  BAD_REQUEST: "Bad Request"
+  NOT_FOUND: "Not Found"
+  INTERNAL_SERVER_ERROR: "Internal Server Error"
+  DEFAULT: "Unknown"
+
+

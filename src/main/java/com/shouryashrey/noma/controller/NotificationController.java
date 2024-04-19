@@ -2,6 +2,7 @@ package com.shouryashrey.noma.controller;
 
 import com.shouryashrey.noma.model.PostNotification;
 import com.shouryashrey.noma.model.standardResponse.StatusResponse;
+import com.shouryashrey.noma.service.NotificationHandler;
 import com.shouryashrey.noma.service.StatusResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,12 @@ public class NotificationController {
     @Autowired
     private StatusResponseFactory statusResponseFactory;
 
+    @Autowired
+    private NotificationHandler notificationHandler;
+
     @PostMapping("/notify")
     public ResponseEntity<StatusResponse> putNotification(@RequestBody PostNotification postNotification) {
+        notificationHandler.publishNotification(postNotification);
         return new ResponseEntity<>(
             statusResponseFactory.createResponse(HttpStatus.OK),
             HttpStatus.OK
