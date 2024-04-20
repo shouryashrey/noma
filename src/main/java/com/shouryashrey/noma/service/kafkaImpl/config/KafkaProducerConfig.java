@@ -1,7 +1,7 @@
 package com.shouryashrey.noma.service.kafkaImpl.config;
 
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.shouryashrey.noma.model.PostNotification;
+import com.shouryashrey.noma.service.serializer.CustomSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ public class KafkaProducerConfig {
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.29.174:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, CustomSerializer.class);
 
         return new DefaultKafkaProducerFactory<>(config);
     }
